@@ -1,0 +1,4 @@
+---
+# handlers file for wazuh-agent-role
+- name: restart wazuh-agent
+  ansible.builtin.service: name=wazuh-agent state=restarted

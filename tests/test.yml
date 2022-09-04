@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true
+  remote_user: root
+  vars:
+    - wazuh_manager_ip: ''
+    - wazuh_registration_password: ''
+    - wazuh_agent_group: default
+  roles:
+    - ../../.

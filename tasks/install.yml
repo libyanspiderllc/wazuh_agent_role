@@ -1,0 +1,19 @@
+---
+- name: "RedHat | Install wazuh-agent"
+  include_tasks: setup-RedHat.yml
+  when: ansible_os_family == "RedHat" or ansible_os_family == "Rocky"
+
+- name: "Debian | Install wazuh-agent"
+  include_tasks: setup-Debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: "Windows | Install wazuh-agent"
+  include_tasks: setup-Windows.yml
+  when: ansible_os_family == "Windows"
+
+- name: "Start wazuh-agent with service"
+  ansible.builtin.service:
+    name: wazuh-agent
+    state: started
+    enabled: true
+  when: not ansible_check_mode and ansible_os_family != "Windows"

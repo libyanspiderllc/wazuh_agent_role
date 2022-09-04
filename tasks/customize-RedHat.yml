@@ -1,0 +1,8 @@
+---
+- name: Copy custom active response scripts
+  ansible.builtin.copy:
+    src: active-response/bin/
+    dest: /var/ossec/active-response/bin/
+    mode: 0755
+    owner: root
+    group: wazuh

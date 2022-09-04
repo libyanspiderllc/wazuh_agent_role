@@ -1,0 +1,9 @@
+---
+- name: Test the variable wazuh_manager_ip is filled. End the host if not.
+  block:
+    - name: Ending play...
+      debug:
+        msg: "wazuh_manager_ip is undefined. End of host."
+    - name: Ending play...
+      meta: end_host
+  when: wazuh_manager_ip is undefined or wazuh_manager_ip|length == 0

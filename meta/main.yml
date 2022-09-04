@@ -1,0 +1,32 @@
+galaxy_info:
+  author: Ahmed Shibani
+  description: Ansible role to install and configure Wazuh Agent on Linux and Windows hosts
+  company: Libyan Spider
+  role_name: wazuh_agent_role
+
+  license: BSD
+
+  min_ansible_version: "2.1"
+
+  platforms:
+    - name: Windows
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - bullseye
+        - buster
+        - etch
+        - jessie
+    - name: EL
+      versions:
+        - "7"
+        - "8"
+
+  galaxy_tags:
+    - wazuh
+
+dependencies:
+  - role: libyanspider.firewall_ansible_role
+    vars:
+      firewall_outgoing_tcp_ports: ["1514", "1515"]
