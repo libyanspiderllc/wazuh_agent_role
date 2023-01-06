@@ -6,3 +6,14 @@
     mode: 0755
     owner: root
     group: wazuh
+
+- name: Enable SCA Remote Commands
+  ansible.builtin.lineinfile:
+    path: /var/ossec/etc/internal_options.conf
+    regexp: 'sca.remote_commands=0'
+    line: 'sca.remote_commands=1'
+    state: present
+    owner: root
+    group: wazuh
+    mode: 0640
+    backup: true
