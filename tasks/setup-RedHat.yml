@@ -1,11 +1,11 @@
 ---
 - name: Redhat | Import a key from a url
-  rpm_key:
+  ansible.builtin.rpm_key:
     state: present
     key: https://packages.wazuh.com/key/GPG-KEY-WAZUH
 
 - name: Redhat | Copy repo informations
-  copy:
+  ansible.builtin.copy:
     dest: /etc/yum.repos.d/wazuh.repo
     content: |
       [wazuh_repo]
@@ -27,7 +27,7 @@
     WAZUH_REGISTRATION_PORT: "{{ wazuh_registration_port }}"
     WAZUH_PROTOCOL: "{{ wazuh_manager_protocol }}"
     WAZUH_REGISTRATION_PASSWORD: "{{ wazuh_registration_password }}"
-    WAZUH_AGENT_GROUP: "{{ wazuh_agent_group }}"
+    WAZUH_AGENT_GROUP: "{{ wazuh_agent_group|join(', ') }}"
   when: not ansible_check_mode and wazuh_release_package is not defined
 
 - name: Redhat | Install wazuh-agent with defined package version
@@ -40,11 +40,11 @@
     WAZUH_REGISTRATION_PORT: "{{ wazuh_registration_port }}"
     WAZUH_PROTOCOL: "{{ wazuh_manager_protocol }}"
     WAZUH_REGISTRATION_PASSWORD: "{{ wazuh_registration_password }}"
-    WAZUH_AGENT_GROUP: "{{ wazuh_agent_group }}"
+    WAZUH_AGENT_GROUP: "{{ wazuh_agent_group|join(', ') }}"
   when: not ansible_check_mode and wazuh_release_package is defined
 
 - name: Redhat | Disable repo update
-  copy:
+  ansible.builtin.copy:
     dest: /etc/yum.repos.d/wazuh.repo
     content: |
       [wazuh_repo]
