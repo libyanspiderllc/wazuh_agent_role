@@ -16,9 +16,9 @@ Role Variables
 - wazuh_manager_port: "1514"
 - wazuh_registration_port: "1515"
 - wazuh_manager_protocol: "tcp"
-- wazuh_agent_group: "default"
+- wazuh_agent_group: ["default"]
 - wazuh_registration_password: "" #(required)
-- wazuh_autoupdate: true 
+- wazuh_autoupdate: true
 
 Dependencies
 ------------

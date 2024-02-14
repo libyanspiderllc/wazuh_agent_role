@@ -27,7 +27,7 @@
     WAZUH_REGISTRATION_PORT: "{{ wazuh_registration_port }}"
     WAZUH_PROTOCOL: "{{ wazuh_manager_protocol }}"
     WAZUH_REGISTRATION_PASSWORD: "{{ wazuh_registration_password }}"
-    WAZUH_AGENT_GROUP: "{{ wazuh_agent_group|join(', ') }}"
+    WAZUH_AGENT_GROUP: "{{ wazuh_agent_group|join(',') }}"
   when: not ansible_check_mode and wazuh_release_package is not defined
 
 - name: Redhat | Install wazuh-agent with defined package version
@@ -40,7 +40,7 @@
     WAZUH_REGISTRATION_PORT: "{{ wazuh_registration_port }}"
     WAZUH_PROTOCOL: "{{ wazuh_manager_protocol }}"
     WAZUH_REGISTRATION_PASSWORD: "{{ wazuh_registration_password }}"
-    WAZUH_AGENT_GROUP: "{{ wazuh_agent_group|join(', ') }}"
+    WAZUH_AGENT_GROUP: "{{ wazuh_agent_group|join(',') }}"
   when: not ansible_check_mode and wazuh_release_package is defined
 
 - name: Redhat | Disable repo update
